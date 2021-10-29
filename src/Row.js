@@ -44,12 +44,13 @@ const opts = {
       else{
           movieTrailer(movie?.name || "")
           .then((url)=>{
-                    const urlParams = new URLSearchParams(url).search;
+                    const urlParams = new URLSearchParams(new(url).search)
                     setTrailerUrl(urlParams.get('v'));
           })
           .catch((error) => console.log (error));
       }
   };
+          
 
 console.table(movies);
 
@@ -68,7 +69,7 @@ console.table(movies);
                     <img key={movie.id} onClick={()=>handleClick(movie)} className={`row_poster ${isLargeRow && "row_posterlarge"}`} src={`${base_url}${isLargeRow?movie.poster_path:movie.backdrop_path}`} alt={movie.name}/>
                 ))} ;
                  </div>
-              {trailerUrl && <  YouTube videoId={trailerUrl} opts={opts}/>}
+             {trailerUrl && <  YouTube videoId={trailerUrl} opts={opts}/>}
                    </div>
     )
 }

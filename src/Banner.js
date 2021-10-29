@@ -18,6 +18,11 @@ function Banner() {
        }
        fetchData();
     }, []);
+
+    // truncate
+    function truncate(str,n){
+        return str?.length > n ? str.substr(0,n-1) + "...":str;
+    }
     return (
         <header className="banner"
             style={{
@@ -28,9 +33,8 @@ function Banner() {
             >
                     <div className="banner_contents">
                     {/* title */}
-                   
-                <h1 className="banner_title">
-                    {movie?.title||movie?.name||movie.original_name}
+                         <h1 className="banner_title">
+                    {movie?.title||movie?.name||movie?.original_name}
                 </h1>
                     
                     
@@ -43,11 +47,11 @@ function Banner() {
                  {/* descrption */}
 
                  <h1 className="banner_description">
-                     {movie?.overview}
+                 { truncate(movie?.overview,150)}
                  </h1>
             </div>
 
-
+            <div className="banner--fadeBottom"/>
             
         </header>
     );
